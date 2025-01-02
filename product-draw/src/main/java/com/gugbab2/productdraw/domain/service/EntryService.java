@@ -35,7 +35,7 @@ public class EntryService {
         return paymentRepository.save(payment);
     }
 
-    public Entry processWinner(String entryId) {
+    public Entry checkWinner(String entryId) {
         Entry entry = entryRepository.findById(entryId);
         // 예외처리
         char isWinner = entry.getIsWinner();

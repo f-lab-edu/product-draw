@@ -31,7 +31,7 @@ public class EntryController {
 
     @PostMapping("/{entryId}/check-winner")
     public ResponseEntity<Entry> checkWinner(@PathVariable String entryId) {
-        Entry entry = entryService.processWinner(entryId);
+        Entry entry = entryService.checkWinner(entryId);
         return new ResponseEntity<>(entry, HttpStatus.OK);
     }
 }
