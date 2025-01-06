@@ -13,12 +13,16 @@ public class Product {
     private double price;
     private String size;
     private String category;
+    private boolean isDone;
+    private int stock;
 
-    public Product(String id, String name, double price, String size, String category) {
-        this.id = id;
+    public Product(String name, double price, String size, String category, int stock) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.price = price;
         this.size = size;
         this.category = category;
+        this.isDone = false;
+        this.stock = stock;
     }
 }
