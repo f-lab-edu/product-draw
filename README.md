@@ -3,7 +3,7 @@
 
 ## 📚Wiki 
 ### 🤙Rule
-- [브랜치 네이밍 규칙](https://github.com/f-lab-edu/product-draw/wiki/Rule-%E2%80%90-Github%E2%80%90Flow-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%84%A4%EC%9D%B4%EB%B0%8D-%EA%B7%9C%EC%B9%99(%EC%9D%B4%EC%8A%88-%EA%B8%B0%EB%B0%98-%EB%84%A4%EC%9D%B4%EB%B0%8D))
+- [브랜치 네이밍 & 커밋 메시지 규칙](https://github.com/f-lab-edu/product-draw/wiki/Rule-%E2%80%90-%EB%B8%8C%EB%9E%9C%EC%B9%98-%EB%84%A4%EC%9D%B4%EB%B0%8D-&-%EC%BB%A4%EB%B0%8B%EB%A9%94%EC%8B%9C%EC%A7%80-%EA%B7%9C%EC%B9%99))
 
 ### 🛴Use Case
 - [Use Case(응모)](https://github.com/f-lab-edu/product-draw/wiki/USE-CASE-%E2%80%90-%EC%9D%91%EB%AA%A8)
