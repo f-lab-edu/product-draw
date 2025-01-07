@@ -8,3 +8,7 @@
 ### 프로젝트 시작
 - [프로젝트 시작하기](https://gugbab2.tistory.com/81)
 - [프로젝트 주제 선정 & 구현 범위 설정](https://gugbab2.tistory.com/82)
+
+### Github 을 어떻게 사용해야 할까? 
+- [Github Issue & PR 관리](https://gugbab2.tistory.com/83)
+- [Git 브랜치 전략, Git-Flow vs Github-Flow](https://gugbab2.tistory.com/84)
