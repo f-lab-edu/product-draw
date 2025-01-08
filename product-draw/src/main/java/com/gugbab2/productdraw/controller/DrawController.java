@@ -18,20 +18,16 @@ public class DrawController {
     private final DrawService drawService;
 
     // 응모 제출(프론트엔드 서버)
-//    @PostMapping("/submit")
-//    public ResponseEntity<?> createDraw(@RequestBody DrawDto.CreateDrawDto drawDto) {
-//        try {
-//            Draw entry = drawService.createDraw(drawDto.getEntrantId(), drawDto.getProductId());
-//            return new ResponseEntity<>(entry, HttpStatus.CREATED);
-//        } catch (EntrantNotFoundException | ProductNotFoundException e) {
-//            return new ResponseEntity<>(e.getMessage(), HttpStatus.NOT_FOUND);
-//        }
-//    }
-//
-//    // 응모 결과 발표(어드민 서버)
-//    @PostMapping("/{productId}/result")
-//    public ResponseEntity<List<Entrant>> announceWinners(@PathVariable String productId) {
-//        List<Entrant> entrants = drawService.announceResult(productId);
-//        return new ResponseEntity<>(entrants, HttpStatus.OK);
-//    }
+    @PostMapping("/submit")
+    public ResponseEntity<?> createDraw(@RequestBody DrawDto.CreateDrawDto drawDto) {
+        Draw entry = drawService.createDraw(drawDto.getEntrantId(), drawDto.getProductId());
+        return new ResponseEntity<>(entry, HttpStatus.CREATED);
+    }
+
+    // 응모 결과 발표(어드민 서버)
+    @PostMapping("/{productId}/result")
+    public ResponseEntity<List<String>> announceWinners(@PathVariable String productId) {
+        List<String> entrants = drawService.announceResult(productId);
+        return new ResponseEntity<>(entrants, HttpStatus.OK);
+    }
 }
