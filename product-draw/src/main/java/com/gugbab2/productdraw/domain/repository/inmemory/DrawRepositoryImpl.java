@@ -1,7 +1,6 @@
 package com.gugbab2.productdraw.domain.repository.inmemory;
 
 import com.gugbab2.productdraw.domain.entity.Draw;
-import com.gugbab2.productdraw.domain.entity.Entrant;
 import com.gugbab2.productdraw.domain.repository.DrawRepository;
 import com.gugbab2.productdraw.domain.vo.WinnerStatus;
 import org.springframework.stereotype.Repository;
