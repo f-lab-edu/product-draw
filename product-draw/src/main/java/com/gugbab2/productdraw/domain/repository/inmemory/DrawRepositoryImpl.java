@@ -25,6 +25,19 @@ public class DrawRepositoryImpl implements DrawRepository {
     }
 
     @Override
+    public List<Draw> findAllByEntrantId(String entrantId) {
+        List<Draw> draws = new ArrayList<>();
+
+        for(Draw draw : drawsDatabase.values()) {
+            if (draw.getEntrantId().equals(entrantId)) {
+                draws.add(draw);
+            }
+        }
+
+        return draws;
+    }
+
+    @Override
     public List<Draw> findDrawsByProductId(String productId){
         List<Draw> draws = new ArrayList<>();
 
@@ -37,5 +50,14 @@ public class DrawRepositoryImpl implements DrawRepository {
         return draws;
     }
 
+    @Override
+    public void updateIsWinnerById(String drawId) {
 
+        for(Draw draw : drawsDatabase.values()){
+            if(draw.getId().equals(drawId)){
+                Draw selectDraw = drawsDatabase.get(drawId);
+                selectDraw.setWinner(true);
+            }
+        }
+    }
 }

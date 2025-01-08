@@ -20,14 +20,23 @@ public class DrawController {
     // 응모 제출(프론트엔드 서버)
     @PostMapping("/submit")
     public ResponseEntity<?> createDraw(@RequestBody DrawDto.CreateDrawDto drawDto) {
-        Draw entry = drawService.createDraw(drawDto.getEntrantId(), drawDto.getProductId());
-        return new ResponseEntity<>(entry, HttpStatus.CREATED);
+        try {
+            Draw entry = drawService.createDraw(drawDto.getEntrantId(), drawDto.getProductId());
+            return new ResponseEntity<>(entry, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     // 응모 결과 발표(어드민 서버)
     @PostMapping("/{productId}/result")
-    public ResponseEntity<List<String>> announceWinners(@PathVariable String productId) {
-        List<String> entrants = drawService.announceResult(productId);
-        return new ResponseEntity<>(entrants, HttpStatus.OK);
+    public ResponseEntity<?> announceWinners(@PathVariable String productId) {
+        try {
+            List<Draw> Draws = drawService.announceResult(productId);
+            return new ResponseEntity<>(Draws, HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
     }
 }
