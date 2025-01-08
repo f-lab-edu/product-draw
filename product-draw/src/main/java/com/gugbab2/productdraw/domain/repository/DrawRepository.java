@@ -7,7 +7,8 @@ import java.util.List;
 public interface DrawRepository {
     Draw save(Draw entry);
     Draw findById(String id);
-    List<Draw> findByProductId(String productId);
-    List<Draw> findByEntrantId(String entrantId);
-    void updateById(Draw draw);
+    List<Draw> findAllByEntrantId(String entrantId);
+    List<Draw> findDrawsByProductId(String productId);
+    void updateIsWinnerById(String drawId);
+
 }
