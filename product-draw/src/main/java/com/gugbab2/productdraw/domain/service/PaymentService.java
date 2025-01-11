@@ -59,13 +59,7 @@ public class PaymentService {
         // 사용자 인증 상태 확인
 
         // 결제 내역 조회 후 환불 가능여부 확인
-        Payment payment = paymentRepository.findById(paymentId);
-        if(payment == null){
-            throw new RuntimeException("payment not found");
-        }
-        if(!payment.getPaymentStatus().equals(PaymentStatus.COMPLETED)){
-            throw new RuntimeException("payment is not paid");
-        }
+        Payment payment = getPayment(paymentId, amont);
 
         // 환불 처리(카드사 API)
 
@@ -75,6 +69,29 @@ public class PaymentService {
         // 비동기로 환불 알림
 
         return paymentRepository.updatePaymentStatus(payment.getId(), payment);
+    }
+
+    private Payment getPayment(String paymentId, long amont) {
+
+        Payment payment = paymentRepository.findById(paymentId);
+
+        // 결제 존재여부
+        if (payment == null){
+            throw new RuntimeException("payment not found");
+        }
+        // 결제 금액, 환불 금액 일치 여부
+        if (payment.getAmount() != amont) {
+            throw new RuntimeException("payment amount is not equal to parameter(: amont)");
+        }
+        // 결제 상태 확인(미결제)
+        if (payment.getPaymentStatus().equals(PaymentStatus.PENDING)){
+            throw new RuntimeException("payment is not paid");
+        }
+        // 결제 상태 확인(환불 완료)
+        if (payment.getPaymentStatus().equals(PaymentStatus.REFUNDED)) {
+            throw new RuntimeException("payment is refunded");
+        }
+        return payment;
     }
 
 }
