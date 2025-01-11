@@ -1,15 +1,27 @@
 package com.gugbab2.productdraw.dto;
 
+import com.gugbab2.productdraw.domain.vo.PaymentMethod;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
-@Getter
-@Setter
-@AllArgsConstructor
 public class PaymentDto {
-    private String shippingAddress;
-    private String paymentMethod;
-    private double amount;
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class RequestPaymentDto{
+        private String drawId;
+        private PaymentMethod paymentMethod;
+        private long amount;
+    }
+
+    @Getter
+    @Setter
+    @AllArgsConstructor
+    public static class RefundPaymentDto{
+        private String paymentId;
+        private long amount;
+    }
+
 }
