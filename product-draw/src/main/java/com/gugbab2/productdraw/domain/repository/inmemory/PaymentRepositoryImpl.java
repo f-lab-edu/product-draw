@@ -18,6 +18,11 @@ public class PaymentRepositoryImpl implements PaymentRepository {
     }
 
     @Override
+    public Payment findById(String id) {
+        return paymentsDatabase.get(id);
+    }
+
+    @Override
     public Payment findAllByDrawId(String DrawId) {
         for(Payment payment : paymentsDatabase.values()) {
             if(payment.getDrawId().equals(DrawId)) {
@@ -25,6 +30,11 @@ public class PaymentRepositoryImpl implements PaymentRepository {
             }
         }
         return null;
+    }
+
+    public Payment updatePaymentStatus(String id, Payment payment) {
+        paymentsDatabase.put(id, payment);
+        return payment;
     }
 
 }

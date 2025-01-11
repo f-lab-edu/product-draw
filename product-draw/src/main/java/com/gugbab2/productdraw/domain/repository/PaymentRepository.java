@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface PaymentRepository {
     Payment save(Payment payment);
+    Payment findById(String id);
     Payment findAllByDrawId(String DrawId);
+    Payment updatePaymentStatus(String id, Payment payment);
 }

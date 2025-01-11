@@ -7,6 +7,7 @@ import com.gugbab2.productdraw.domain.repository.inmemory.DrawRepositoryImpl;
 import com.gugbab2.productdraw.domain.repository.inmemory.PaymentRepositoryImpl;
 import com.gugbab2.productdraw.domain.repository.inmemory.ProductRepositoryImpl;
 import com.gugbab2.productdraw.domain.vo.PaymentMethod;
+import com.gugbab2.productdraw.domain.vo.PaymentStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,13 +41,40 @@ public class PaymentService {
             throw new RuntimeException("payment already exists");
         }
 
+        // 결제 저장
+        Payment payment = paymentRepository.save(new Payment(drawId, paymentMethod, amount));
+
         // 결제 처리(카드사 API 호출)
+
+        // 결제 완료 시 결제 완료 여부 수정
+        payment.setPaymentStatus(PaymentStatus.COMPLETED);
 
         // 결제 완료 시 비동기로 결제 알림
 
-        // 결제 완료 후 결제 정보 DB 저장
-        Payment payment = new Payment(drawId, paymentMethod, amount);
-        return paymentRepository.save(payment);
+        return payment;
+    }
+
+    public Payment refundPayment(String drawId, String paymentId, long amont) {
+
+        // 사용자 인증 상태 확인
+
+        // 결제 내역 조회 후 환불 가능여부 확인
+        Payment payment = paymentRepository.findById(paymentId);
+        if(payment == null){
+            throw new RuntimeException("payment not found");
+        }
+        if(!payment.getPaymentStatus().equals(PaymentStatus.COMPLETED)){
+            throw new RuntimeException("payment is not paid");
+        }
+
+        // 환불 처리(카드사 API)
+
+        // 결제 상태 환불 변경
+        payment.setPaymentStatus(PaymentStatus.REFUNDED);
+
+        // 비동기로 환불 알림
+
+        return paymentRepository.updatePaymentStatus(payment.getId(), payment);
     }
 
 }

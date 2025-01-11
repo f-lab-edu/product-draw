@@ -1,6 +1,7 @@
 package com.gugbab2.productdraw.domain.entity;
 
 import com.gugbab2.productdraw.domain.vo.PaymentMethod;
+import com.gugbab2.productdraw.domain.vo.PaymentStatus;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,7 @@ public class Payment {
     private String drawId;
     private PaymentMethod paymentMethod;
     private long amount;
-    private boolean isPaid;
+    private PaymentStatus paymentStatus;
     private LocalDateTime createdAt;
 
     public Payment(String drawId, PaymentMethod paymentMethod, long amount) {
@@ -22,7 +23,8 @@ public class Payment {
         this.drawId = drawId;
         this.paymentMethod = paymentMethod;
         this.amount = amount;
-        this.isPaid = false;
+        this.paymentStatus = PaymentStatus.PENDING;
         this.createdAt = LocalDateTime.now();
     }
+
 }
